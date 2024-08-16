@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <input type="text"id="input_id"/>
+  <h1 id="h1_id">hi this is heading</h1> 
+  
+  
+  <button onclick="changeText()">Click</button>
+</body>
+<script>
+    var classH1 = document.querySelector('#h1_id').class
+    function changeText(){
+        let val=document.getElementById("input_id").value
+        document.getElementById("h1_id").innerHTML='val';
+    }
+
+    chgRed =()=>{
+        document.querySelector('#red_id').addEvenListener("click,chgRed");
+    }
+    chgBlue =()=>{
+        document.querySelector('#blue_id').addEvenListener("click,chgBlue");
+    }
+    
+    
+        
+     </script> 
+</html>

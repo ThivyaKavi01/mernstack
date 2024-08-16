@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Textbox Border Example</title>
+    <style>      
+        .red-border {
+            border: 2px solid red;
+        }
+        
+        .default-border {
+            border: 2px solid black;
+        }
+    </style>
+</head>
+<body>
+    <h2>Textbox Border Example</h2>
+    <input type="text" id="myTextbox" class="default-border" placeholder="Enter text here">
+    <button onclick="checkTextbox()">Check Textbox</button>
+    <script>
+        function checkTextbox() {
+            var textbox = document.getElementById('myTextbox');
+            if (textbox.value.trim() === '') {
+                textbox.className = 'red-border';
+            } else {
+                textbox.className = 'default-border';
+            }
+        }
+    </script>
+</body>
+</html>
