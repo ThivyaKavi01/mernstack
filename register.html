@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+        }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            float: left;
+        }
+        nav ul li a {
+            display: block;
+            color: #fff;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+        nav ul li a:hover {
+            background-color: #575757;
+        }
+        .content {
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 4px;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+        .toast.show {
+            display: block;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="register.html">Register</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="content">
+        <h1>Register</h1>
+        <form id="register-form">
+            <label for="register-email">Email:</label>
+            <input type="email" id="register-email" name="email" required><br><br>
+            <label for="register-password">Password:</label>
+            <input type="password" id="register-password" name="password" required><br><br>
+            <button type="submit">Register</button>
+        </form>
+        <div id="toast" class="toast">Registered</div>
+    </div>
+
+    <script>
+        document.getElementById('register-form').addEventListener('submit', async function(event) {
+            event.preventDefault(); // Prevent form submission
+            
+            const email = document.getElementById('register-email').value;
+            const password = document.getElementById('register-password').value;
+            
+            try {
+                const response = await fetch('https://reqres.in/api/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email, password })
+                });
+
+                if (response.ok) {
+                    // Show the toast message if registration is successful
+                    const toast = document.getElementById('toast');
+                    toast.classList.add('show');
+                    
+                    // Hide the toast message after 3 seconds
+                    setTimeout(() => {
+                        toast.classList.remove('show');
+                    }, 3000);
+                } else {
+                    console.error('Registration failed');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        });
+    </script>
+</body>
+</html>
